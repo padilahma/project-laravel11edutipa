@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+      
+        $dataMessage = $request->message ?? "Berikut adalah daftar buku populer Indonesia 📚";
+
         $books = [
             [
                 'judul' => 'Laskar Pelangi',
@@ -36,6 +39,7 @@ class HomeController extends Controller
             ]
         ];
 
-        return view('home', compact('books'));
+    
+        return view('home', compact('books', 'dataMessage'));
     }
 }
