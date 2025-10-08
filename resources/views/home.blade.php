@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Buku</title>
 
-    <!-- Google Font -->
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -81,14 +81,40 @@
         .footer {
             background-color: #f8f1ff;
             text-align: center;
-            padding: 15px;
+            padding: 18px;
             color: #7a5bbf;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .footer span {
             color: #9b59b6;
             font-weight: 600;
+        }
+
+        form {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            border-radius: 8px;
+            border: 1px solid #c9a7ff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        button:hover {
+            background-color: #8e44ad;
         }
 
         @keyframes fadeIn {
@@ -116,6 +142,12 @@
             📚 Daftar Buku 
         </div>
 
+        <!-- Form kirim pesan -->
+        <form action="{{ url('/') }}" method="GET">
+            <input type="text" name="message" placeholder="Ketik pesan di sini..." value="{{ request('message') }}">
+            <button type="submit">Kirim</button>
+        </form>
+
         <table>
             <thead>
                 <tr>
@@ -138,7 +170,7 @@
         </table>
 
         <div class="footer">
-      
+            {{ $dataMessage ?? 'Belum ada pesan dikirim 📨' }}
         </div>
     </div>
 </body>
