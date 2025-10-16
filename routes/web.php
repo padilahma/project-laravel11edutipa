@@ -1,17 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
-    return redirect('/sekolah');
-});
+    return view('welcome');
+})->name('welcome');
 
-// Halaman daftar siswa
-Route::get('/sekolah', [SiswaController::class, 'index'])->name('sekolah.siswa');
+Route::get('/home', [HomeController::class, 'index']);
+Route::post('/send-message', [HomeController::class, 'sendMessage'])->name('send.message');
 
-// Halaman form tambah siswa
-Route::get('/sekolah/create', [SiswaController::class, 'create'])->name('sekolah.create');
-
-// Proses simpan data siswa
-Route::post('/sekolah', [SiswaController::class, 'store'])->name('sekolah.store');
+// 🛍️ Halaman CRUD Produk
+Route::resource('products', ProductController::class);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('/produk/{id}', [ProductController::class, 'update'])->name('produk.update');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
